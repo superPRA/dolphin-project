@@ -1,26 +1,31 @@
-.rtl{
-    direction: rtl;
+@tailwind components;
+@tailwind utilities;
+@tailwind base;
+.rtl {
+  direction: rtl;
 }
-.ltr{
-    direction: ltr;
+.ltr {
+  direction: ltr;
 }
-.flash{
-    animation: flash 1.5s linear infinite;
+.flash {
+  animation: flash 1.5s linear infinite;
 }
 @keyframes flash {
-    0%{
-        opacity: 100%;
-    }
-    50%{
-        opacity: 0%;
-    }
-    100%{
-        opacity: 100%;
-    }
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
-.active{
-    @apply bg-white border border-gray-300 border-b-white border-b rounded-t-sm hover:text-black
+.active {
+  @apply bg-white border border-gray-300 border-b-white border-b rounded-t-sm hover:text-black;
 }
-tr,td,th{
-    @apply p-[10px] text-sm
+tr,
+td,
+th {
+  @apply p-[10px] text-sm;
 }
