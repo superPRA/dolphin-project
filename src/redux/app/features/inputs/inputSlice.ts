@@ -49,12 +49,14 @@ const initialState: CounterState = {
   priceReduction: 0,
   loginWn: false,
   accountWn: false,
-  users: [{
-    isActive:true,
+  users: [
+    {
+    isActive:false,
     name: "پوریا موسوی",
     pass: "13811391",
     phone:"09305306508"
-  }]
+  }
+]
 };
 
 export const counterSlice = createSlice({
