@@ -7,6 +7,8 @@ import { Outlet } from "react-router-dom";
 import FooterShopingCart from "../componenets/footerShopingCart";
 import Footer from "../componenets/footer";
 import LoginWn from "../componenets/loginWn";
+import AcountWn from "../componenets/acountWn";
+import DarkBG from "../componenets/darkBG";
 
 type Props = {};
 
@@ -28,7 +30,9 @@ export default function Home({}: Props) {
       </div>
       <Footer />
       <FooterShopingCart />
+      <AcountWn />
       <LoginWn />
+      <DarkBG />
     </div>
   );
 }

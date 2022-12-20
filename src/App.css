@@ -1,6 +1,4 @@
-@tailwind components;
-@tailwind utilities;
-@tailwind base;
+
 .rtl {
   direction: rtl;
 }

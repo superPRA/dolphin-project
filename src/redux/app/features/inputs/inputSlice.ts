@@ -14,6 +14,7 @@ interface CounterState {
   }[];
   priceReduction: number;
   loginWn: boolean
+  accountWn: boolean
   users: {
     name: string
     phone: string
@@ -47,7 +48,13 @@ const initialState: CounterState = {
   ],
   priceReduction: 0,
   loginWn: false,
-  users: []
+  accountWn: false,
+  users: [{
+    isActive:true,
+    name: "پوریا موسوی",
+    pass: "13811391",
+    phone:"09305306508"
+  }]
 };
 
 export const counterSlice = createSlice({
@@ -70,6 +77,9 @@ export const counterSlice = createSlice({
     setLoginWn: (state, action: PayloadAction<boolean>)=>{
       state.loginWn = action.payload
     },
+    setAccountWn: (state, action: PayloadAction<boolean>)=>{
+      state.accountWn = action.payload
+    },
     addUser: (state, action: PayloadAction<{phone: string, pass: string, name:string}>) =>{
       state.users.push({
         name: action.payload.name,
@@ -86,11 +96,16 @@ export const counterSlice = createSlice({
         }
         state.users[i].isActive = true
       }
+    },
+    logOut: (state)=>{
+      state.users.map(item=>{
+        item.isActive = false
+      })
     }
   },
 });
 
-export const { setFilterInput, setSaleCode, removePriceReduction, setLoginWn, addUser, activateUser } = counterSlice.actions;
+export const { setFilterInput, setSaleCode, removePriceReduction, setLoginWn, addUser, activateUser, setAccountWn, logOut } = counterSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.cart.orders;

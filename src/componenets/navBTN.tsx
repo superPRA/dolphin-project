@@ -1,6 +1,8 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
-import { setLoginWn } from "../redux/app/features/inputs/inputSlice";
+import { setAccountWn, setLoginWn } from "../redux/app/features/inputs/inputSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 type Props = {};
 
@@ -13,13 +15,15 @@ export default function NavBTN({}: Props) {
       className="border border-red-600 py-3 px-5 rounded-md hover:bg-red-600 hover:text-white transition text-sm"
       onClick={() => {
         if(!user){
-            dispatch(setLoginWn(true));
+          dispatch(setLoginWn(true));
+        } else if(user.isActive){
+          dispatch(setAccountWn(true))
         }
         
       }}
     >
      {!!user?.name || "عضویت / ورود"}
-     {!!user?.name && user.name}
+     {!!user?.name && <span>{user.name}  <FontAwesomeIcon icon={solid("angle-down")} /> </span>}
     </button>
   );
 }

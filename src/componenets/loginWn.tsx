@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
-import { activateUser, addUser, setLoginWn } from "../redux/app/features/inputs/inputSlice";
+import { activateUser, addUser, setAccountWn, setLoginWn } from "../redux/app/features/inputs/inputSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useFormik } from "formik";
@@ -23,6 +23,7 @@ const initialValues: initVal = {
 };
 
 export default function LoginWn() {
+  const [css, setCss] = useState("scale-150 opacity-0 hidden")
   const [page, setPage] = useState("PN");
   const dispatch = useAppDispatch();
   const loginWnStatus = useAppSelector((state) => state.inp.loginWn);
@@ -37,7 +38,13 @@ export default function LoginWn() {
     },
   });
   useEffect(() => {
-    if (!loginWnStatus) {
+    if(loginWnStatus){
+      setCss("scale-150 opacity-30 block")
+      setTimeout(()=>{
+        setCss("scale-100 opacity-100 block")
+      },10)
+    }
+    else  {
       formik.values.phoneNumber = "";
       formik.values.passSet1 = "";
       formik.values.passSet2 = ""
@@ -47,11 +54,17 @@ export default function LoginWn() {
       formik.errors.passWord = ""
       formik.errors.phoneNumber =""
       setPage("PN");
+      setCss("scale-50 opacity-0 block")
+      setTimeout(()=>{
+        setCss("scale-150 opacity-0 hidden")
+      },300)
     }
   }, [loginWnStatus]);
   function PNclickHandle() {
     const user = users.find((item) => formik.values.phoneNumber === item.phone);
-    if (!user) {
+    if (user) {
+      setPage("PS")
+    } else {
       setPage("PSS");
     }
   }
@@ -74,19 +87,18 @@ export default function LoginWn() {
     dispatch(activateUser({pass: $.passSet1, phone: $.phoneNumber}))
     dispatch(setLoginWn(false))
   }
+  function PSclickHandle(){
+    const user = users.find(item=>item.phone === formik.values.phoneNumber)
+    if(user?.pass === formik.values.passWord){
+      dispatch(activateUser({pass:formik.values.passWord, phone:formik.values.phoneNumber}))
+      dispatch(setLoginWn(false))
+    } else {
+      alert("رمز نا درست");
+    }
+  } 
   return (
-    <div
-      className={`fixed duration-300 ${
-        loginWnStatus ? "z-50 bg-opacity-50" : "-z-50 bg-opacity-0"
-      } transition-colors bg-black  top-0 left-0 h-screen w-full`}
-      onClick={() => {
-        dispatch(setLoginWn(false));
-      }}
-    >
       <div
-        className={`absolute left-[calc(50%-12.5rem)] ${
-          loginWnStatus ? "scale-100 opacity-100" : "scale-150 opacity-0"
-        } z-50 top-[calc(50%-12.5rem)] bg-white w-[25rem] transition-all duration-300 h-[25rem]  border`}
+        className={`fixed left-[calc(50%-12.5rem)] ${css} z-50 top-[calc(50%-12.5rem)] bg-white w-[25rem] transition-all duration-300 h-[25rem]  border`}
         onClick={(e) => e.stopPropagation()}
       >
         <header className="flex justify-end border-b p-3 text-xl">
@@ -99,7 +111,7 @@ export default function LoginWn() {
             <h4 className="text-center mt-6 text-sm">
               برای ورود یا عضویت شماره تلفن خود را ورد کنید
             </h4>
-            <form className="relative">
+            <form className="relative" onSubmit={e=>e.preventDefault()}>
               <input
                 type="text"
                 id="PN"
@@ -115,7 +127,7 @@ export default function LoginWn() {
                 شماره موبایل
               </label>
               <button
-                className="w-full border-black transition-colors text-center hover:bg-red-600 hover:border-red-600 hover:text-white border rounded-md py-3 mt-12"
+                className="w-full transition-colors text-center bg-red-600 text-white  rounded-md py-3 mt-12"
                 type="button"
                 onClick={PNclickHandle}
               >
@@ -129,7 +141,7 @@ export default function LoginWn() {
             <h4 className="text-center mt-6 text-sm">
               برای ساخت اکانت رمز خود را انتخاب کنید
             </h4>
-            <form>
+            <form onSubmit={e=>e.preventDefault()}>
               <div className="mt-8 relative">
                 <input
                   type="text"
@@ -164,7 +176,7 @@ export default function LoginWn() {
               </div>
 
               <button
-                className="w-full border-black transition-colors text-center hover:bg-red-600 hover:border-red-600 hover:text-white border rounded-md py-3 mt-12"
+                className="w-full transition-colors text-center bg-red-600 text-white  rounded-md py-3 mt-12"
                 type="button"
                 onClick={PSSclickHandle}
               >
@@ -179,7 +191,7 @@ export default function LoginWn() {
             <h4 className="text-center mt-6 text-sm">
               نام خود را وارد کنید
             </h4>
-            <form>
+            <form onSubmit={e=>e.preventDefault()}>
               <div className="mt-20 relative">
                 <input
                   type="text"
@@ -197,7 +209,7 @@ export default function LoginWn() {
                 </label>
               </div>
               <button
-                className="w-full border-black transition-colors text-center hover:bg-red-600 hover:border-red-600 hover:text-white border rounded-md py-3 mt-12"
+                className="w-full transition-colors text-center bg-red-600 text-white  rounded-md py-3 mt-12"
                 type="button"
                 onClick={NMclickHandle}
               >
@@ -207,7 +219,40 @@ export default function LoginWn() {
           </main>
           )
         }
+        {
+          page === "PS" && (
+            <main className="px-12">
+            <h4 className="text-center mt-6 text-sm">
+              {"رمز خود را وارد کنید"}
+            </h4>
+            <form onSubmit={e=>e.preventDefault()}>
+              <div className="mt-20 relative">
+                <input
+                  type="text"
+                  id="PS"
+                  className={`text-center outline-none border-b w-full peer p-1 text-lg`}
+                  {...formik.getFieldProps("passWord")}
+                />
+                <label
+                  htmlFor="PS"
+                  className={`absolute  transition-all ${
+                    formik.values.passWord ? "-top-6" : "top-0"
+                  } text-gray-400 peer-focus:-top-7 cursor-text peer-focus:text-sm peer-focus:text-black w-full left-0 text-center`}
+                >
+                  رمز
+                </label>
+              </div>
+              <button
+                className="w-full transition-colors text-center bg-red-600 text-white  rounded-md py-3 mt-12"
+                type="button"
+                onClick={PSclickHandle}
+              >
+                ادامه
+              </button>
+            </form>
+          </main>
+          )
+        }
       </div>
-    </div>
   );
 }
