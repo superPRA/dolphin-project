@@ -119,23 +119,24 @@ export default function LoginWn() {
   });
   useEffect(() => {
     if (loginWnStatus) {
-      setCss("scale-150 opacity-30 block");
+      setCss("md:scale-150 md:opacity-30 -bottom-96 block");
       setTimeout(() => {
-        setCss("scale-100 opacity-100 block");
+        setCss("md:scale-100 md:opacity-100 bottom-0 block");
       }, 10);
     } else {
       formik.values.phoneNumber = "";
       formik.values.passSet1 = "";
       formik.values.passSet2 = "";
+      formik.values.passWord = "";
       formik.errors.passWord = "";
       formik.errors.passSet1 = "";
       formik.errors.passSet2 = "";
       formik.errors.passWord = "";
       formik.errors.phoneNumber = "";
       setPage("PN");
-      setCss("scale-50 opacity-0 block");
+      setCss("md:scale-50 md:opacity-0 -bottom-96 block");
       setTimeout(() => {
-        setCss("scale-150 opacity-0 hidden");
+        setCss("md:scale-150 md:opacity-0 -bottom-96 hidden");
       }, 300);
     }
   }, [loginWnStatus]);
@@ -167,26 +168,24 @@ export default function LoginWn() {
       case "PSS":
         setPage("NM");
         break;
+      case "NM":
+        dispatch(
+          addUser({
+            name: formik.values.name,
+            pass: formik.values.passSet1,
+            phone: formik.values.phoneNumber,
+          })
+        );
+        dispatch(activateUser({ pass: formik.values.passSet1, phone: formik.values.phoneNumber }));
+        dispatch(setLoginWn(false));
+        break;
       default:
         break;
     }
   }
-
-  function NMclickHandle() {
-    const $ = formik.values;
-    dispatch(
-      addUser({
-        name: $.name,
-        pass: $.passSet1,
-        phone: $.phoneNumber,
-      })
-    );
-    dispatch(activateUser({ pass: $.passSet1, phone: $.phoneNumber }));
-    dispatch(setLoginWn(false));
-  }
   return (
     <div
-      className={`fixed left-[calc(50%-12.5rem)] ${css} z-50 top-[calc(50%-12.5rem)] bg-white w-[25rem] transition-all duration-300 h-[25rem]  border`}
+      className={`fixed md:left-[calc(50%-12.5rem)] ${css} z-50 md:top-[calc(50%-12.5rem)] bg-white md:w-[25rem] w-full transition-all duration-300 md:h-[25rem] h-full  border`}
       onClick={(e) => e.stopPropagation()}
     >
       <header className="flex justify-end border-b p-3 text-xl">
@@ -343,7 +342,8 @@ export default function LoginWn() {
               <button
                 className="w-full transition-colors text-center bg-red-600 text-white  rounded-md py-3 mt-12"
                 type="button"
-                onClick={NMclickHandle}
+                disabled={!!formik.errors.name}
+                onClick={pageNavigationAndFormHandle}
               >
                 ادامه
               </button>

@@ -17,7 +17,7 @@ export default function AcountWn({}: Props) {
   const dispatch = useAppDispatch();
 
   const user = users.find((item) => item.isActive === true);
-  const [css, setCss] = useState("scale-150 opacity-0 hidden");
+  const [css, setCss] = useState("md:scale-150 md:opacity-0 hidden");
   const links: links = [
     {
       title: "اطلاعات من",
@@ -47,20 +47,20 @@ export default function AcountWn({}: Props) {
   ];
   useEffect(() => {
     if (accountWn) {
-      setCss("scale-150 opacity-30 block");
+      setCss("md:scale-150 md:opacity-30 block");
       setTimeout(() => {
-        setCss("scale-100 opacity-100 block");
+        setCss("md:scale-100 md:opacity-100 block");
       }, 10);
     } else {
-      setCss("scale-50 opacity-0 block");
+      setCss("md:scale-50 md:opacity-0 block");
       setTimeout(() => {
-        setCss("scale-150 opacity-0 hidden");
+        setCss("md:scale-150 md:opacity-0 hidden");
       }, 300);
     }
   }, [accountWn]);
   return (
     <div
-      className={`w-60 ${css} transition-all duration-300 z-50 top-20 bg-white absolute left-20`}
+      className={`w-60 ${css} transition-all h-full md:h-auto duration-300 z-50 top-0 md:top-20 bg-white absolute left-0 md:left-20`}
     >
       <header className="bg-[url('https://static.delino.com/exclusive/img/bg-cover.png')] text-white w-full ">
         <div className="px-4 font-semibold bg-neutral-700 py-3 bg-opacity-70">

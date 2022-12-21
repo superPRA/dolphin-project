@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../componenets/glob/nav";
 import { useAppSelector } from "../redux/app/hooks";
-import { NavLink, Navigate, Outlet } from "react-router-dom";
+import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
 import UserNavBar from "../componenets/user/userNavBar";
 import Footer from "../componenets/ordering/footer";
 
@@ -11,9 +11,8 @@ export default function User({}: Props) {
   const user = useAppSelector((state) => state.inp.users).find(
     (item) => item.isActive === true
   );
-  if (typeof user === "undefined") {
-    <Navigate to="/order" />;
-  } else {
+  const navigate = useNavigate()
+  if (typeof user !== "undefined") {  
     return (
       <>
         <Nav />
@@ -34,6 +33,8 @@ export default function User({}: Props) {
         <Footer />
       </>
     );
+  } else {
+    navigate("/")
   }
   return <h1 className="text-center mt-40 text-3xl">کاربری یافت نشد</h1>;
 }

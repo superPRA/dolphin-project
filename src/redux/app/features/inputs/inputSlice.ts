@@ -20,6 +20,7 @@ interface CounterState {
     phone: string
     pass: string
     isActive: boolean
+    email:string
   }[] 
 }
 interface filterInp {
@@ -54,7 +55,8 @@ const initialState: CounterState = {
     isActive:true,
     name: "پوریا موسوی",
     pass: "13811391",
-    phone:"09305306508"
+    phone:"09305306508",
+    email: ""
   }
 ]
 };
@@ -82,12 +84,13 @@ export const counterSlice = createSlice({
     setAccountWn: (state, action: PayloadAction<boolean>)=>{
       state.accountWn = action.payload
     },
-    addUser: (state, action: PayloadAction<{phone: string, pass: string, name:string}>) =>{
+    addUser: (state, action: PayloadAction<{phone: string, pass: string, name:string, email?:string}>) =>{
       state.users.push({
         name: action.payload.name,
         phone: action.payload.phone,
         pass: action.payload.pass,
-        isActive: false
+        isActive: false,
+        email: action.payload.email as string
       })
     },
     activateUser: (state, action: PayloadAction<{phone: string, pass: string}>)=>{

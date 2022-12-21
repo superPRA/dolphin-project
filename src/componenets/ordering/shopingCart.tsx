@@ -79,17 +79,9 @@ export default function ShopingCart({}: Props) {
     },
   });
   return (
-    <div
-      className={`lg:sticky fixed lg:top-5 bottom-0  transition-all duration-500 bg-black z-20 w-full lg:w-auto ${
-        cartOpen ? "top-0 bg-opacity-70" : "bg-opacity-0"
-      }`}
-      onClick={() => {
-        dispatch(setCartStatus(false));
-      }}
-    >
       <div
-        className={` border border-gray-300 bg-white h-screen w-80 lg:w-auto lg:h-auto lg:static absolute transition-all duration-300 bottom-0 ${
-          cartOpen ? " left-0" : " -left-80 "
+        className={` border border-gray-300 bg-white h-screen w-80 lg:w-auto lg:h-auto lg:static fixed transition-all duration-300 bottom-0 ${
+          cartOpen ? " left-0 z-50" : " -left-80 "
         }`}
         onClick={(e) => {
           dispatch(setCartStatus(true));
@@ -232,6 +224,5 @@ export default function ShopingCart({}: Props) {
           </div>
         )}
       </div>
-    </div>
   );
 }
