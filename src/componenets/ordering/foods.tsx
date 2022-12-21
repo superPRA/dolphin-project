@@ -1,5 +1,5 @@
-import list from "../api/lists";
-import { useAppSelector } from "../redux/app/hooks";
+import list from "../../api/lists";
+import { useAppSelector } from "../../redux/app/hooks";
 import FoodBox from "./foodBox";
 
 type Props = {};

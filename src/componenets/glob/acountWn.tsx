@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link } from "react-router-dom";
-import { logOut, setAccountWn } from "../redux/app/features/inputs/inputSlice";
+import { logOut, setAccountWn } from "../../redux/app/features/inputs/inputSlice";
 
 type Props = {};
 type links = {
@@ -22,27 +22,27 @@ export default function AcountWn({}: Props) {
     {
       title: "اطلاعات من",
       icon: <FontAwesomeIcon icon={solid("exclamation")} />,
-      link: "",
+      link: "/user/info",
     },
     {
       title: "ادرس ها",
       icon: <FontAwesomeIcon icon={solid("map-location")} />,
-      link: "",
+      link: "/user/address",
     },
     {
       title: "کیف پول",
       icon: <FontAwesomeIcon icon={solid("wallet")} />,
-      link: "",
+      link: "/user/wallet",
     },
     {
       title: "سفارشات من",
       icon: <FontAwesomeIcon icon={solid("sheet-plastic")} />,
-      link: "",
+      link: "/user/orders",
     },
     {
       title: "تغییر رمز",
       icon: <FontAwesomeIcon icon={solid("gear")} />,
-      link: "",
+      link: "/user/setting",
     },
   ];
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function AcountWn({}: Props) {
       className={`w-60 ${css} transition-all duration-300 z-50 top-20 bg-white absolute left-20`}
     >
       <header className="bg-[url('https://static.delino.com/exclusive/img/bg-cover.png')] text-white w-full ">
-        <div className="px-4 font-semibold bg-gray-400 py-3 bg-opacity-40">
+        <div className="px-4 font-semibold bg-neutral-700 py-3 bg-opacity-70">
           <div className="flex justify-between items-center  ">
             <h2 className="">{user?.name}</h2>
             <button onClick={() => dispatch(setAccountWn(false))}>

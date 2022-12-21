@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import {
   setAccountWn,
   setLoginWn,
-} from "../redux/app/features/inputs/inputSlice";
+} from "../../redux/app/features/inputs/inputSlice";
 
 type Props = {};
 

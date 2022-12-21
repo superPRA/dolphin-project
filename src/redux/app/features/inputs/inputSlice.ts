@@ -51,7 +51,7 @@ const initialState: CounterState = {
   accountWn: false,
   users: [
     {
-    isActive:false,
+    isActive:true,
     name: "پوریا موسوی",
     pass: "13811391",
     phone:"09305306508"

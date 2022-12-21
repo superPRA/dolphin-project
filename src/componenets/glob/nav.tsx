@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import link from "../api/links";
-import { useAppDispatch } from "../redux/app/hooks";
-import { setLoginWn } from "../redux/app/features/inputs/inputSlice";
-import NavBTN from "./navBTN";
+import link from "../../api/links";
+import { useAppDispatch } from "../../redux/app/hooks";
+import { setLoginWn } from "../../redux/app/features/inputs/inputSlice";
+import NavBTN from "../ordering/navBTN";
 
 const { logo } = link;
 type Props = {};

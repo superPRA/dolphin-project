@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import list from "../api/lists";
+import list from "../../api/lists";
 import FoodNavBox from "./foodNavBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import {
   orderHandleMinus,
   orderHandlePlus,
-} from "../redux/app/features/shopingCart/cartSlice";
+} from "../../redux/app/features/shopingCart/cartSlice";
 
 type Props = {
   img: string;

@@ -1,8 +1,8 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
-import { setCartStatus } from "../redux/app/features/shopingCart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
+import { setCartStatus } from "../../redux/app/features/shopingCart/cartSlice";
 
 type Props = {};
 

@@ -8,8 +8,8 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect } from "react";
-import { useAppDispatch } from "../redux/app/hooks";
-import { setFilterInput } from "./../redux/app/features/inputs/inputSlice";
+import { useAppDispatch } from "../../redux/app/hooks";
+import { setFilterInput } from "../../redux/app/features/inputs/inputSlice";
 
 type Props = {};
 interface formValues {

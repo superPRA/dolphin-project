@@ -1,5 +1,5 @@
 import React from "react";
-import link from "../api/links";
+import link from "../../api/links";
 
 const { header } = link;
 

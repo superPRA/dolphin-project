@@ -1,6 +1,6 @@
 import React from "react";
-import { useAppDispatch } from "../redux/app/hooks";
-import { orderHandleMinus, orderHandlePlus } from "../redux/app/features/shopingCart/cartSlice";
+import { useAppDispatch } from "../../redux/app/hooks";
+import { orderHandleMinus, orderHandlePlus } from "../../redux/app/features/shopingCart/cartSlice";
 
 
 type Props = { title: string; priceText: string; count: number };

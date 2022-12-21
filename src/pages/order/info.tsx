@@ -1,4 +1,4 @@
-import TableDataComponenet from "../componenets/tableDataComponenet";
+import TableDataComponenet from "../../componenets/ordering/tableDataComponenet";
 
 type Props = {};
 

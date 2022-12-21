@@ -1,7 +1,7 @@
 import React from 'react'
-import FoodNav from '../componenets/foodNav'
-import FilterInput from '../componenets/filterInput'
-import Foods from '../componenets/foods'
+import FoodNav from '../../componenets/ordering/foodNav'
+import FilterInput from '../../componenets/ordering/filterInput'
+import Foods from '../../componenets/ordering/foods'
 
 type Props = {}
 

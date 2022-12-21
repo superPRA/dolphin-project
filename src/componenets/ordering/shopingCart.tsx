@@ -1,15 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import ShopingCartBox from "./shopingCartBox";
-import { deleteCart } from "../redux/app/features/shopingCart/cartSlice";
+import { deleteCart } from "../../redux/app/features/shopingCart/cartSlice";
 import { useFormik } from "formik";
 import {
   removePriceReduction,
   setSaleCode,
-} from "../redux/app/features/inputs/inputSlice";
-import { setCartStatus } from "../redux/app/features/shopingCart/cartSlice";
+} from "../../redux/app/features/inputs/inputSlice";
+import { setCartStatus } from "../../redux/app/features/shopingCart/cartSlice";
 import { privateDecrypt } from "crypto";
 
 type Props = {};

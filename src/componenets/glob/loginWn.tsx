@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import {
   activateUser,
   addUser,
   setAccountWn,
   setLoginWn,
-} from "../redux/app/features/inputs/inputSlice";
+} from "../../redux/app/features/inputs/inputSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useFormik } from "formik";

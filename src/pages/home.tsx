@@ -1,14 +1,14 @@
 import React from "react";
-import Nav from "../componenets/nav";
-import Header from "../componenets/header";
-import Navbar from "../componenets/navbar";
-import ShopingCart from "../componenets/shopingCart";
+import Nav from "../componenets/glob/nav";
+import Header from "../componenets/ordering/header";
+import Navbar from "../componenets/ordering/navbar";
+import ShopingCart from "../componenets/ordering/shopingCart";
 import { Outlet } from "react-router-dom";
-import FooterShopingCart from "../componenets/footerShopingCart";
-import Footer from "../componenets/footer";
-import LoginWn from "../componenets/loginWn";
-import AcountWn from "../componenets/acountWn";
-import DarkBG from "../componenets/darkBG";
+import FooterShopingCart from "../componenets/ordering/footerShopingCart";
+import Footer from "../componenets/ordering/footer";
+import LoginWn from "../componenets/glob/loginWn";
+import AcountWn from "../componenets/glob/acountWn";
+import DarkBG from "../componenets/glob/darkBG";
 
 type Props = {};
 
@@ -30,9 +30,6 @@ export default function Home({}: Props) {
       </div>
       <Footer />
       <FooterShopingCart />
-      <AcountWn />
-      <LoginWn />
-      <DarkBG />
     </div>
   );
 }
