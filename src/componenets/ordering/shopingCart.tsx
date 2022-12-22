@@ -83,10 +83,7 @@ export default function ShopingCart({}: Props) {
         className={` border border-gray-300 bg-white h-screen w-80 lg:w-auto lg:h-auto lg:static fixed transition-all duration-300 bottom-0 ${
           cartOpen ? " left-0 z-50" : " -left-80 "
         }`}
-        onClick={(e) => {
-          dispatch(setCartStatus(true));
-          e.stopPropagation();
-        }}
+        
       >
         <div className="border-b border-b-gray-300 p-4 flex justify-between items-center">
           <div className="flex items-center">
