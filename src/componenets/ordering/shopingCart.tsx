@@ -43,7 +43,7 @@ export default function ShopingCart({}: Props) {
   const totalPriceAfterReduction = totalPrice * priceReduction;
   const priceAfterReduction = totalPrice - totalPriceAfterReduction;
   const [saleCodeErr, setSaleCodeErr] = useState("");
-  const saleCodeList =useAppSelector(state=>state.inp.saleCodes)
+  const saleCodeList = useAppSelector((state) => state.inp.saleCodes);
   useEffect(() => {
     if (numberOfOrders === 0) {
       dispatch(setCartStatus(false));
@@ -69,21 +69,33 @@ export default function ShopingCart({}: Props) {
     initialValues,
     onSubmit: (values) => {
       dispatch(setSaleCode(values.saleCode));
-      if (!saleCodeList.find(item=>item.code === values.saleCode)) {
+      if (!saleCodeList.find((item) => item.code === values.saleCode)) {
         setSaleCodeErr("کد تخفیف وجود ندارد");
       } else {
         setSaleCodePage(false);
         values.saleCode = "";
-        setSaleCodeErr("")
+        setSaleCodeErr("");
       }
     },
   });
   return (
+    <div
+      className={`lg:sticky fixed lg:top-5 bottom-0  transition-all duration-500 bg-black z-20 w-full lg:w-auto ${
+        cartOpen ? "top-0 bg-opacity-70" : "bg-opacity-0"
+      }`}
+      onClick={() => {
+        dispatch(setCartStatus(false));
+      }}
+    >
+      {" "}
       <div
         className={` border border-gray-300 bg-white h-screen w-80 lg:w-auto lg:h-auto lg:static fixed transition-all duration-300 bottom-0 ${
           cartOpen ? " left-0 z-50" : " -left-80 "
         }`}
-        
+        onClick={(e) => {
+          dispatch(setCartStatus(true));
+          e.stopPropagation();
+        }}
       >
         <div className="border-b border-b-gray-300 p-4 flex justify-between items-center">
           <div className="flex items-center">
@@ -221,5 +233,6 @@ export default function ShopingCart({}: Props) {
           </div>
         )}
       </div>
+    </div>
   );
 }

@@ -14,7 +14,7 @@ export default function DarkBG({}: Props) {
   const cartOpen = useAppSelector(state=>state.cart.cartOpen)
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (accountWn || loginWn || cartOpen) {
+    if (accountWn || loginWn) {
       setCss("bg-opacity-0 block")
       setTimeout(()=>{
         setCss("bg-opacity-50 block")
