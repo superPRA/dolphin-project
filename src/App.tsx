@@ -13,6 +13,7 @@ import { useAppDispatch } from "./redux/app/hooks";
 import { setAccountWn, setLoginWn } from "./redux/app/features/inputs/inputSlice";
 import UserInfo from "./pages/user/userInfo";
 import SuccessMassage from "./componenets/glob/successMassage";
+import UserAddress from "./pages/user/userAddress";
 
 function App() {
   const location = useLocation() 
@@ -31,7 +32,7 @@ function App() {
         </Route>
         <Route path="user" element={<User />}>
             <Route path="info" element={<UserInfo />} />
-            <Route path="address" element={<h1>address</h1>} />
+            <Route path="address" element={<UserAddress />} />
             <Route path="wallet" element={<h1>wallet</h1>} />
             <Route path="orders" element={<h1>orders</h1>} />
             <Route path="setting" element={<h1>setting</h1>} />
