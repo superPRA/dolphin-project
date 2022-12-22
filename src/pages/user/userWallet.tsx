@@ -5,7 +5,7 @@ type Props = {};
 export default function UserWallet({}: Props) {
   return (
     <div>
-      <h1 className="text-center text-4xl mt-20 ">کیف پول</h1>
+      <h1 className="text-center text-4xl pt-20 ">کیف پول</h1>
       <div className="border rounded-full mx-auto w-fit px-6 py-3 mt-6">
         کیف پول:0 تومان
       </div>

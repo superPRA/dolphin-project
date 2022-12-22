@@ -15,6 +15,7 @@ import UserInfo from "./pages/user/userInfo";
 import SuccessMassage from "./componenets/glob/successMassage";
 import UserAddress from "./pages/user/userAddress";
 import UserWallet from "./pages/user/userWallet";
+import UserOrders from "./pages/user/userOrders";
 
 function App() {
   const location = useLocation() 
@@ -35,7 +36,7 @@ function App() {
             <Route path="info" element={<UserInfo />} />
             <Route path="address" element={<UserAddress />} />
             <Route path="wallet" element={<UserWallet />} />
-            <Route path="orders" element={<h1>orders</h1>} />
+            <Route path="orders" element={<UserOrders />} />
             <Route path="setting" element={<h1>setting</h1>} />
         </Route>
         <Route path="/adminPanel" element={<h1>admin panel</h1>} />
