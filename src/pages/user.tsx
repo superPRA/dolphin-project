@@ -22,12 +22,12 @@ export default function User({}: Props) {
               {user?.name}
             </h1>
             <div className="bg-black bg-opacity-10 text-center text-sm w-fit mx-auto py-2 px-3 mt-3 border border-neutral-400 rounded-full text-white">
-              کیف پول:0 تومتن
+              کیف پول:0 تومان
             </div>
             <UserNavBar />
           </div>
         </div>
-        <div className="min-h-screen">
+        <div className="min-h-[80vh]">
           <Outlet />
         </div>
         <Footer />

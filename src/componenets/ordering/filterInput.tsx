@@ -9,7 +9,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../redux/app/hooks";
-import { setFilterInput } from "../../redux/app/features/inputs/inputSlice";
+import {
+  setFilterInput,
+  updateUser,
+} from "../../redux/app/features/inputs/inputSlice";
 
 type Props = {};
 interface formValues {
@@ -28,7 +31,7 @@ export default function FilterInput({}: Props) {
     validationSchema: Yup.object({
       quickSearch: Yup.string(),
     }),
-    onSubmit: () => {},
+    onSubmit: (values) => {},
   });
   useEffect(() => {
     dispatch(setFilterInput(formik.values));
@@ -36,7 +39,7 @@ export default function FilterInput({}: Props) {
 
   return (
     <form className="flex justify-between items-center bk2:px-8 px-2 py-4 ">
-      <div className="flex items-center" >
+      <div className="flex items-center">
         <button className="border border-l-0 border-gray-500 rounded-r-sm h-9 w-9">
           <FontAwesomeIcon flip="horizontal" icon={solid("search")} />
         </button>
@@ -62,12 +65,15 @@ export default function FilterInput({}: Props) {
           className="absolute opacity-0 peer"
           {...formik.getFieldProps("checkExist")}
         />
-        <div className=" h-5 w-5 border-2 border-gray-400 rounded-full peer-checked:bg-red-600 transition-all duration-300 flex justify-center items-center hover:border-red-600 peer-hover:border-red-600 peer-checked:border-red-600">
+        <label
+          htmlFor="exist"
+          className=" h-5 w-5 border-2 border-gray-400 rounded-full peer-checked:bg-red-600 transition-all duration-300 flex justify-center items-center hover:border-red-600 peer-hover:border-red-600 peer-checked:border-red-600"
+        >
           <FontAwesomeIcon
             icon={solid("check")}
             className="text-sm text-white"
           />
-        </div>
+        </label>
         <label htmlFor="exist" className="select-none">
           فقط موجود ها
         </label>

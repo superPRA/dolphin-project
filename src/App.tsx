@@ -12,6 +12,7 @@ import DarkBG from "./componenets/glob/darkBG";
 import { useAppDispatch } from "./redux/app/hooks";
 import { setAccountWn, setLoginWn } from "./redux/app/features/inputs/inputSlice";
 import UserInfo from "./pages/user/userInfo";
+import SuccessMassage from "./componenets/glob/successMassage";
 
 function App() {
   const location = useLocation() 
@@ -39,6 +40,7 @@ function App() {
       </Routes>
       <AcountWn />
       <LoginWn />
+      <SuccessMassage />
       <DarkBG />
     </div>
   );

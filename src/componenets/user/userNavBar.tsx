@@ -27,7 +27,7 @@ export default function UserNavBar({}: Props) {
     },
   ];
   return (
-    <div className="flex justify-center items-center gap-x-6 mt-8">
+    <div className="flex justify-center items-center overflow-hidden gap-x-6 mt-8">
       {LinksData.map((item) => {
         const { link, title } = item;
         return (
@@ -36,8 +36,8 @@ export default function UserNavBar({}: Props) {
             to={link}
             className={({ isActive }) => {
               return isActive
-                ? "text-white font-bold"
-                : "text-gray-400 font-semibold";
+                ? "text-white font-bold text-sm md:text-base"
+                : "text-gray-400 font-semibold text-sm md:text-base";
             }}
           >
             {title}

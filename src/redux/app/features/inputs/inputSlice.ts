@@ -13,22 +13,28 @@ interface CounterState {
     isActive: boolean;
   }[];
   priceReduction: number;
-  loginWn: boolean
-  accountWn: boolean
+  loginWn: boolean;
+  accountWn: boolean;
+  successMassageStatus: boolean;
   users: {
-    name: string
-    phone: string
-    pass: string
-    isActive: boolean
-    email:string
-  }[] 
+    name: string;
+    phone: string;
+    pass: string;
+    isActive: boolean;
+    email: string;
+    gender: string;
+    birthDay: {
+      day: string;
+      mounth: string;
+      year: string;
+    };
+  }[];
 }
 interface filterInp {
   quickSearch: string;
   checkExist: boolean;
 }
 type saleCode = string;
-
 
 const initialState: CounterState = {
   filterInp: {
@@ -50,15 +56,22 @@ const initialState: CounterState = {
   priceReduction: 0,
   loginWn: false,
   accountWn: false,
+  successMassageStatus: false,
   users: [
     {
-    isActive:true,
-    name: "پوریا موسوی",
-    pass: "13811391",
-    phone:"09305306508",
-    email: ""
-  }
-]
+      isActive: true,
+      name: "پوریا موسوی",
+      pass: "13811391",
+      phone: "09305306508",
+      email: "",
+      birthDay: {
+        day: "",
+        mounth: "",
+        year: "",
+      },
+      gender: "male",
+    },
+  ],
 };
 
 export const counterSlice = createSlice({
@@ -75,42 +88,99 @@ export const counterSlice = createSlice({
         state.priceReduction = state.saleCodes[i].sale;
       }
     },
-    removePriceReduction: (state)=>{
-      state.priceReduction = 0
+    removePriceReduction: (state) => {
+      state.priceReduction = 0;
     },
-    setLoginWn: (state, action: PayloadAction<boolean>)=>{
-      state.loginWn = action.payload
+    setLoginWn: (state, action: PayloadAction<boolean>) => {
+      state.loginWn = action.payload;
     },
-    setAccountWn: (state, action: PayloadAction<boolean>)=>{
-      state.accountWn = action.payload
+    setAccountWn: (state, action: PayloadAction<boolean>) => {
+      state.accountWn = action.payload;
     },
-    addUser: (state, action: PayloadAction<{phone: string, pass: string, name:string, email?:string}>) =>{
+    addUser: (
+      state,
+      action: PayloadAction<{
+        phone: string;
+        pass: string;
+        name: string;
+        email?: string;
+      }>
+    ) => {
       state.users.push({
         name: action.payload.name,
         phone: action.payload.phone,
         pass: action.payload.pass,
         isActive: false,
-        email: action.payload.email as string
-      })
+        email: action.payload.email as string,
+        birthDay: {
+          day: "",
+          mounth: "",
+          year: "",
+        },
+        gender: "",
+      });
     },
-    activateUser: (state, action: PayloadAction<{phone: string, pass: string}>)=>{
-      const i = state.users.findIndex(item=>item.phone === action.payload.phone)
-      if(state?.users[i].pass === action.payload.pass){
+    activateUser: (
+      state,
+      action: PayloadAction<{ phone: string; pass: string }>
+    ) => {
+      const i = state.users.findIndex(
+        (item) => item.phone === action.payload.phone
+      );
+      if (state?.users[i].pass === action.payload.pass) {
         for (let j = 0; j < state.users.length; j++) {
-          state.users[j].isActive = false
+          state.users[j].isActive = false;
         }
-        state.users[i].isActive = true
+        state.users[i].isActive = true;
       }
     },
-    logOut: (state)=>{
-      state.users.map(item=>{
-        item.isActive = false
-      })
-    }
+    logOut: (state) => {
+      state.users.map((item) => {
+        item.isActive = false;
+      });
+    },
+    updateUser: (
+      state,
+      action: PayloadAction<{
+        phoneNumber: string;
+        day: string;
+        mounth: string;
+        year: string;
+        email: string;
+        gender: string;
+        name: string;
+      }>
+    ) => {
+      const i = state.users.findIndex(
+        (user) => user.phone === action.payload.phoneNumber
+      );
+      state.users[i].birthDay = {
+        day: action.payload.day,
+        mounth: action.payload.mounth,
+        year: action.payload.year,
+      };
+      state.users[i].email = action.payload.email;
+      state.users[i].gender = action.payload.gender;
+      state.users[i].name = action.payload.name;
+    },
+    setSuccessMassage: (state, action: PayloadAction<boolean>) => {
+      state.successMassageStatus = action.payload;
+    },
   },
 });
 
-export const { setFilterInput, setSaleCode, removePriceReduction, setLoginWn, addUser, activateUser, setAccountWn, logOut } = counterSlice.actions;
+export const {
+  setFilterInput,
+  setSaleCode,
+  removePriceReduction,
+  setLoginWn,
+  addUser,
+  activateUser,
+  setAccountWn,
+  logOut,
+  updateUser,
+  setSuccessMassage,
+} = counterSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.cart.orders;
