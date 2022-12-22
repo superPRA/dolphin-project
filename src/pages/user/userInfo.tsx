@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useAppSelector } from "../../redux/app/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -9,9 +9,10 @@ interface initVal {
   phoneNumber: string;
   name: string;
   email: string | undefined;
-  day: string
-  mounth: string,
-  year: string
+  day: string;
+  mounth: string;
+  year: string;
+  gender: string;
 }
 
 export default function UserInfo({}: Props) {
@@ -22,9 +23,10 @@ export default function UserInfo({}: Props) {
     phoneNumber: user?.phone as string,
     name: user?.name as string,
     email: user?.email as string,
-    day:"",
-    mounth:"",
-    year:""
+    day: "",
+    mounth: "",
+    year: "",
+    gender: ""
   };
   const formik = useFormik({
     initialValues,
@@ -35,18 +37,28 @@ export default function UserInfo({}: Props) {
     },
     onSubmit: (values) => {},
   });
+  const year = new Date().getFullYear() - (2022 - 1401);
+  const years: number[] = Array.from(
+    new Array(100),
+    (val, index) => year - index
+  ).reverse();
 
-    const [days, setDay]: [number[], any] = useState([])
-    const mounths:string[] = ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "ابان", "اذر", "دی", "بهمن", "اسفند"]
-    const [years, setYears]: [number[], any] = useState([])
-    useMemo(()=>{
-      for (let i = 0; i < 32; i++) {
-        setDay([...days, i])
-      }
-      for (let i = 1310; i < 1400; i++){
-        setYears([...years, i])
-      }
-    },[])
+  const mounths: string[] = [
+    "فروردین",
+    "اردیبهشت",
+    "خرداد",
+    "تیر",
+    "مرداد",
+    "شهریور",
+    "مهر",
+    "ابان",
+    "اذر",
+    "دی",
+    "بهمن",
+    "اسفند",
+  ];
+  const days: number[] = Array.from(new Array(31), (val, index) => index + 1);
+  console.log(formik.values.gender);
   return (
     <div>
       <form className="w-[32rem] mx-auto">
@@ -125,17 +137,19 @@ export default function UserInfo({}: Props) {
             <br />
             <div className="flex gap-x-4">
               <div className="flex justify-between w-full border-b pb-2 border-b-gray-400">
-                <select className="appearance-none outline-none w-full" id="day" {...formik.getFieldProps("day")}>
-                  <option value="روز" selected>
-                    روز
-                  </option>
-                  {
-                    days.map(item=>{
-                      return(
-                        <option value={item}>{item}</option>
-                      )
-                    })
-                  }
+                <select
+                  className="appearance-none outline-none w-full"
+                  id="day"
+                  {...formik.getFieldProps("day")}
+                >
+                  <option value="روز">روز</option>
+                  {days.map((item) => {
+                    return (
+                      <option value={item.toString()} key={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
                 </select>
                 <label htmlFor="day">
                   <FontAwesomeIcon
@@ -145,15 +159,19 @@ export default function UserInfo({}: Props) {
                 </label>
               </div>
               <div className="flex justify-between w-full border-b pb-2 border-b-gray-400">
-                <select className="appearance-none outline-none" id="mounth" {...formik.getFieldProps("mounth")}>
-                  <option value="ماه" selected>
-                    ماه
-                  </option>
-                  {
-                    mounths.map(item=>{
-                      return <option value={item}>{item}</option>
-                    })
-                  }
+                <select
+                  className="appearance-none outline-none"
+                  id="mounth"
+                  {...formik.getFieldProps("mounth")}
+                >
+                  <option value="ماه">ماه</option>
+                  {mounths.map((item) => {
+                    return (
+                      <option value={item} key={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
                 </select>
                 <label htmlFor="mounth">
                   <FontAwesomeIcon
@@ -163,15 +181,19 @@ export default function UserInfo({}: Props) {
                 </label>
               </div>
               <div className="flex justify-between w-full border-b pb-2 border-b-gray-400">
-                <select className="appearance-none outline-none" id="year" {...formik.getFieldProps("year")}>
-                  <option value="سال" selected>
-                    سال
-                  </option>
-                  {
-                    years.reverse().map(item=>{
-                      return <option value={item}>{item}</option>
-                    })
-                  }
+                <select
+                  className="appearance-none outline-none"
+                  id="year"
+                  {...formik.getFieldProps("year")}
+                >
+                  <option value="سال">سال</option>
+                  {years.reverse().map((item) => {
+                    return (
+                      <option value={item.toString()} key={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
                 </select>
                 <label htmlFor="year">
                   <FontAwesomeIcon
@@ -184,8 +206,26 @@ export default function UserInfo({}: Props) {
           </div>
         </div>
         <div className="flex justify-start">
-            <input type="radio" />
-            <label></label>
+          <label htmlFor="male">
+            مرد
+            <input
+              type="radio"
+              value="male"
+              name="gender"
+              id="male"
+              onChange={formik.handleChange}
+            />
+          </label>
+          <label htmlFor="female">
+            زن
+            <input
+              type="radio"
+              value="female"
+              name="gender"
+              id="female"
+              onChange={formik.handleChange}
+            />
+          </label>
         </div>
       </form>
     </div>

@@ -78,6 +78,7 @@ export default function AcountWn({}: Props) {
           const { title, icon, link } = item;
           return (
             <Link
+            key={link}
               to={link}
               className="flex justify-between items-center  py-2 hover:text-red-600 transition-colors"
             >

@@ -32,6 +32,7 @@ export default function UserNavBar({}: Props) {
         const { link, title } = item;
         return (
           <NavLink
+          key={link}
             to={link}
             className={({ isActive }) => {
               return isActive
