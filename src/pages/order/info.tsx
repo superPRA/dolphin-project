@@ -1,4 +1,5 @@
 import TableDataComponenet from "../../componenets/ordering/tableDataComponenet";
+import Navbar from "../../componenets/ordering/navbar";
 
 type Props = {};
 
@@ -20,52 +21,65 @@ export default function Info({}: Props) {
     "جمعه",
     "شنبه",
   ];
-  const foodName = ["فست فود", "کافی شاپ","پیتزا","ساندویچ","ایتالیایی","مرغ سوخاری"]
+  const foodName = [
+    "فست فود",
+    "کافی شاپ",
+    "پیتزا",
+    "ساندویچ",
+    "ایتالیایی",
+    "مرغ سوخاری",
+  ];
   return (
-    <div className="mb-6">
-      <div className="grid grid-cols-12 pt-12">
-        <div className="lg:col-span-6 col-span-12 px-4">
-          <h1 className="text-center text-2xl text-red-600">ساعات سرویس دهی</h1>
-          <table className="w-full mt-6 ">
-            <thead className="border-b border-b-black">
-              <tr>
-                <th></th>
-                <th>صبحانه</th>
-                <th>ناهار</th>
-                <th>شام</th>
-              </tr>
-            </thead>
-            <tbody>
-              {componentWeekDayList.map((item) => {
-                return (
-                  <TableDataComponenet
-                    componentWeekDay={item}
-                    dinnerTime={dinnerTime}
-                    launchTime={launchTime}
-                    time={time}
-                    weekDay={weekDay}
-                    key={item}
-                    dayOfWeek={daysOfWeeks[item]}
-                  />
-                );
-              })}
-            </tbody>
-          </table>
+    <div className="lg:col-span-8 col-span-12 lg:mr-20">
+      <Navbar />
+      <div className="border-[1px] border-gray-300 bg-white">
+        <div className="mb-6">
+          <div className="grid grid-cols-12 pt-12">
+            <div className="lg:col-span-6 col-span-12 px-4">
+              <h1 className="text-center text-2xl text-red-600">
+                ساعات سرویس دهی
+              </h1>
+              <table className="w-full mt-6 ">
+                <thead className="border-b border-b-black">
+                  <tr>
+                    <th></th>
+                    <th>صبحانه</th>
+                    <th>ناهار</th>
+                    <th>شام</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {componentWeekDayList.map((item) => {
+                    return (
+                      <TableDataComponenet
+                        componentWeekDay={item}
+                        dinnerTime={dinnerTime}
+                        launchTime={launchTime}
+                        time={time}
+                        weekDay={weekDay}
+                        key={item}
+                        dayOfWeek={daysOfWeeks[item]}
+                      />
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <div className="lg:col-span-6 col-span-12">
+              <h1 className="text-center text-2xl text-red-600">نوع غذا</h1>
+              <ul className="mt-8 text-center">
+                {foodName.map((item) => {
+                  return (
+                    <li className="border border-gray-300 rounded-full w-fit py-2 px-4 m-1 text-sm inline-block mx-auto">
+                      {item}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="lg:col-span-6 col-span-12">
-          <h1 className="text-center text-2xl text-red-600">نوع غذا</h1>
-          <ul className="mt-8 text-center">
-            {
-              foodName.map(item=>{
-                return <li className="border border-gray-300 rounded-full w-fit py-2 px-4 m-1 text-sm inline-block mx-auto">{item}</li>
-              })
-            }
-            
-          </ul>
-        </div>
-
       </div>
-       
     </div>
   );
 }

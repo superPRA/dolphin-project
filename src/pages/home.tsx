@@ -18,12 +18,7 @@ export default function Home({}: Props) {
       <Nav />
       <Header />
       <div className="grid grid-cols-12">
-        <div className="lg:col-span-8 col-span-12 lg:mr-20">
-          <Navbar />
-          <div className="border-[1px] border-gray-300 bg-white">
-            <Outlet />
-          </div>
-        </div>
+        <Outlet />
         <div className="lg:col-span-4  lg:ml-10 col-span-12 lg:mr-6 pt-8">
           <ShopingCart />
         </div>
@@ -32,4 +27,12 @@ export default function Home({}: Props) {
       <FooterShopingCart />
     </div>
   );
+}
+{
+  /* <div className="lg:col-span-8 col-span-12 lg:mr-20">
+          <Navbar />
+          <div className="border-[1px] border-gray-300 bg-white">
+            <Outlet />
+          </div>
+        </div> */
 }
