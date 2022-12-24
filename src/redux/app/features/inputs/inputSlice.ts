@@ -142,26 +142,30 @@ export const counterSlice = createSlice({
     updateUser: (
       state,
       action: PayloadAction<{
-        phoneNumber: string;
-        day: string;
-        mounth: string;
-        year: string;
+        phone: string;
         email: string;
         gender: string;
         name: string;
+        birthday:{
+          day: string;
+        mounth: string;
+        year: string
+        }
+        pass: string
       }>
     ) => {
       const i = state.users.findIndex(
-        (user) => user.phone === action.payload.phoneNumber
+        (user) => user.phone === action.payload.phone
       );
       state.users[i].birthDay = {
-        day: action.payload.day,
-        mounth: action.payload.mounth,
-        year: action.payload.year,
+        day: action.payload.birthday.day,
+        mounth: action.payload.birthday.mounth,
+        year: action.payload.birthday.year,
       };
       state.users[i].email = action.payload.email;
       state.users[i].gender = action.payload.gender;
       state.users[i].name = action.payload.name;
+      state.users[i].pass = action.payload.pass
     },
     setSuccessMassage: (state, action: PayloadAction<boolean>) => {
       state.successMassageStatus = action.payload;

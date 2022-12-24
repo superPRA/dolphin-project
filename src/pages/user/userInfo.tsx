@@ -49,13 +49,16 @@ export default function UserInfo({}: Props) {
       },2000)
       dispatch(
         updateUser({
-          phoneNumber: values.phoneNumber,
-          day: values.day,
+          phone: values.phoneNumber,
           email: values.email,
           gender: values.gender,
-          mounth: values.mounth,
           name: values.name,
-          year: values.year,
+          birthday : {
+            day: values.day,
+            mounth: values.mounth,
+            year: values.year
+          },
+          pass: user?.pass as string
         })
       );
     },

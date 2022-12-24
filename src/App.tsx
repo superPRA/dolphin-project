@@ -3,8 +3,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Order from "./pages/order/order";
 import Home from "./pages/home";
 import Info from "./pages/order/info";
-import { useState, useEffect } from "react";
-import ShopingCart from "./componenets/ordering/shopingCart";
+import { useEffect } from "react";
 import LoginWn from "./componenets/glob/loginWn";
 import User from "./pages/user";
 import AcountWn from "./componenets/glob/acountWn";
@@ -16,6 +15,7 @@ import SuccessMassage from "./componenets/glob/successMassage";
 import UserAddress from "./pages/user/userAddress";
 import UserWallet from "./pages/user/userWallet";
 import UserOrders from "./pages/user/userOrders";
+import UserSetting from "./pages/user/userSetting";
 
 function App() {
   const location = useLocation() 
@@ -37,7 +37,7 @@ function App() {
             <Route path="address" element={<UserAddress />} />
             <Route path="wallet" element={<UserWallet />} />
             <Route path="orders" element={<UserOrders />} />
-            <Route path="setting" element={<h1>setting</h1>} />
+            <Route path="setting" element={<UserSetting />} />
         </Route>
         <Route path="/adminPanel" element={<h1>admin panel</h1>} />
       </Routes>
