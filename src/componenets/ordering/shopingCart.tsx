@@ -11,6 +11,7 @@ import {
 } from "../../redux/app/features/inputs/inputSlice";
 import { setCartStatus } from "../../redux/app/features/shopingCart/cartSlice";
 import { privateDecrypt } from "crypto";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 type allOrdersType = {
@@ -27,6 +28,7 @@ interface formValues {
   saleCode: string;
 }
 export default function ShopingCart({}: Props) {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const priceReduction =
     1 - useAppSelector((state) => state.inp.priceReduction);
@@ -87,7 +89,6 @@ export default function ShopingCart({}: Props) {
         dispatch(setCartStatus(false));
       }}
     >
-      {" "}
       <div
         className={` border border-gray-300 bg-white h-screen w-80 lg:w-auto lg:h-auto lg:static fixed transition-all duration-300 bottom-0 ${
           cartOpen ? " left-0 z-50" : " -left-80 "
@@ -172,9 +173,21 @@ export default function ShopingCart({}: Props) {
                     کد تخفیف دارید؟
                   </button>
                 )}
-                <button className="text-white w-full bg-red-600 py-3 mt-6 rounded-md">
-                  نهایی کردن سفارش
-                </button>
+                {window.location.pathname.includes("checkout") || (
+                  <button
+                    className="text-white w-full bg-red-600 py-3 mt-6 rounded-md"
+                    onClick={() => navigate("/order/checkout")}
+                  >
+                    نهایی کردن سفارش
+                  </button>
+                )}
+                {window.location.pathname.includes("checkout") && (
+                  <button className="py-3 px-6 rounded-md w-full border border-neutral-800 mt-6 hover:bg-neutral-800 hover:text-white transition"
+                    onClick={()=>navigate("/order")}
+                  >
+                    بازگشت به منو
+                  </button>
+                )}
               </div>
             )}
             {saleCodePage && (

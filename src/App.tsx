@@ -16,6 +16,7 @@ import UserAddress from "./pages/user/userAddress";
 import UserWallet from "./pages/user/userWallet";
 import UserOrders from "./pages/user/userOrders";
 import UserSetting from "./pages/user/userSetting";
+import Checkout from "./pages/order/checkout";
 
 function App() {
   const location = useLocation() 
@@ -31,6 +32,7 @@ function App() {
         <Route path="order" element={<Home />}>
           <Route path="" element={<Order />} />
           <Route path="info" element={<Info />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
         <Route path="user" element={<User />}>
             <Route path="info" element={<UserInfo />} />
