@@ -17,7 +17,6 @@ type Props = {};
 type allOrdersType = {
   img: string;
   ingridient: string;
-  priceText: string;
   price: number;
   type: string;
   title: string;
@@ -28,6 +27,9 @@ interface formValues {
   saleCode: string;
 }
 export default function ShopingCart({}: Props) {
+  const currency = new Intl.NumberFormat("en-us",{
+    currency: "USD"
+  })
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const priceReduction =
@@ -54,12 +56,12 @@ export default function ShopingCart({}: Props) {
     }
   }, [numberOfOrders]);
   const ShopingCartBoxElement = allOrders.map((item) => {
-    const { count, title, priceText } = item;
+    const { count, title, price } = item;
     return count > 0 ? (
       <ShopingCartBox
         count={count}
         title={title}
-        priceText={priceText}
+        price={price}
         key={title}
       />
     ) : null;
@@ -82,7 +84,7 @@ export default function ShopingCart({}: Props) {
   });
   return (
     <div
-      className={`lg:sticky fixed lg:top-5 bottom-0  transition-all duration-500 bg-black z-20 w-full lg:w-auto ${
+      className={`lg:sticky fixed lg:top-5 bottom-0 transition-all duration-500 bg-black z-20 w-full lg:w-auto ${
         cartOpen ? "top-0 bg-opacity-70" : "bg-opacity-0"
       }`}
       onClick={() => {
@@ -140,7 +142,7 @@ export default function ShopingCart({}: Props) {
             <div className="flex justify-between items-center px-2 mt-4 mb-8">
               <h2 className="font-semibold">هزینه کل</h2>
               <h2 className="font-semibold">
-                {totalPriceAfterReduction} تومان
+                {currency.format(totalPriceAfterReduction)} تومان
               </h2>
             </div>
             {priceReduction < 1 && (
@@ -159,7 +161,7 @@ export default function ShopingCart({}: Props) {
                 </div>
                 <div className="flex justify-between mx-4 mt-4 items-center rtl">
                   <h3>سود شما از این تخفیف</h3>
-                  <h4>{priceAfterReduction}</h4>
+                  <h4>{currency.format(priceAfterReduction)}</h4>
                 </div>
               </div>
             )}

@@ -6,7 +6,6 @@ interface CounterState {
   orders: {
     img: string;
     ingridient: string;
-    priceText: string;
     price: number;
     type: string;
     title: string;
@@ -22,7 +21,6 @@ const initialState: CounterState = {
     {
       img: "",
       ingridient: "خمیر،سس مخصوص ، پنیر",
-      priceText: "60,000",
       price: 60000,
       type: "پیتزا امریکایی(خمیرضخیم)",
       title: "پیتزا پنیر ضخیم",
@@ -33,7 +31,6 @@ const initialState: CounterState = {
       img: "https://static.delino.com/Image/Restaurant/Food/p1pw3hke.5ya_560x350.jpg",
       ingridient:
         "ژامبون گوشت ، ژامبون مرغ، قارچ ، فلفل دلمه، زیتون سیاه ، پنیر، سس",
-      priceText: "112,000",
       price: 112000,
       type: "پیتزا امریکایی(خمیرضخیم)",
       title: "پیتزا سوپریم",
@@ -44,7 +41,6 @@ const initialState: CounterState = {
       img: "https://static.delino.com/Image/Restaurant/Food/auqf4smz.3t2_560x350.jpg",
       ingridient:
         "تکه های سینه مرغ کبابی (گریل) ، گوجه ، قارچ ، زیتون سیاه ، پنیر ، سس",
-      priceText: "109,000",
       price: 109000,
       type: "پیتزا امریکایی(خمیرضخیم)",
       title: "پیتزا ماجیک",

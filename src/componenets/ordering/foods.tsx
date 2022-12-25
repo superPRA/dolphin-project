@@ -22,7 +22,6 @@ export default function Foods({}: Props) {
                 const {
                   img,
                   ingridient,
-                  priceText,
                   price,
                   type,
                   title,
@@ -38,7 +37,6 @@ export default function Foods({}: Props) {
                         title={title}
                         img={img}
                         ingridient={ingridient}
-                        priceText={priceText}
                         price={price}
                         type={type}
                         exist={exist}

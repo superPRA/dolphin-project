@@ -8,7 +8,6 @@ import {
 type Props = {
   img: string;
   ingridient: string;
-  priceText: string;
   price: number;
   type: string;
   title: string;
@@ -19,13 +18,15 @@ type Props = {
 export default function FoodBox({
   img,
   ingridient,
-  priceText,
   price,
   type,
   title,
   count,
   exist,
 }: Props) {
+  const currency = new Intl.NumberFormat("en-us",{
+    currency: "USD"
+  })
   if (img === "") {
     img = "https://www.delino.com/img/general/food-default.jpg";
   }
@@ -62,7 +63,7 @@ export default function FoodBox({
         </div>
 
         <div className="flex justify-between my-2">
-          <h3>{priceText}</h3>
+          <h3>{currency.format(price)}</h3>
           <div className="flex gap-x-2 items-center">
             {count > 0 && (
               <button
