@@ -13,9 +13,17 @@ interface initVal {
 }
 
 export default function Checkout({}: Props) {
+  const orders = useAppSelector((state) => state.cart.orders);
+  const priceReduction =
+    1 - useAppSelector((state) => state.inp.priceReduction);
+  const saleReduction = 100 - priceReduction * 100;
+  const totalPrice = orders.reduce((total, value) => {
+    return total + value.count * value.price;
+  }, 0);
   const isCartEmpty = useAppSelector((state) => state.cart.orders).every(
     (item) => item.count === 0
   );
+  const totalPriceAfterReduction = totalPrice * priceReduction;
   const initialValues: initVal = {
     orderInfo: "",
     reseiveMethod: "motor",
@@ -251,7 +259,7 @@ export default function Checkout({}: Props) {
           )}
           <div className="p-4">
             <h1 className="text-center text-lg font-bold mt-6">
-              پرداختی شما:<span className="text-red-600">109,000 تومان</span>
+              پرداختی شما:<span className="text-red-600">{totalPriceAfterReduction} تومان</span>
             </h1>
             <button className="rounded px-6 py-3 bg-red-600 text-white block mx-auto mt-8">
               ارسال به درگاه بانک
