@@ -1,19 +1,20 @@
 import React from "react";
 import Nav from "../componenets/glob/nav";
 import Header from "../componenets/ordering/header";
-import Navbar from "../componenets/ordering/navbar";
 import ShopingCart from "../componenets/ordering/shopingCart";
 import { Outlet } from "react-router-dom";
 import FooterShopingCart from "../componenets/ordering/footerShopingCart";
 import Footer from "../componenets/ordering/footer";
-import LoginWn from "../componenets/glob/loginWn";
-import AcountWn from "../componenets/glob/acountWn";
-import DarkBG from "../componenets/glob/darkBG";
+import { Helmet } from "react-helmet-async";
 
 type Props = {};
 
 export default function Home({}: Props) {
   return (
+    <>
+    <Helmet>
+      <title>سفارش</title>
+    </Helmet>
     <div className="bg-[rgb(248,248,248)]">
       <Nav />
       <Header />
@@ -26,6 +27,8 @@ export default function Home({}: Props) {
       <Footer />
       <FooterShopingCart />
     </div>
+    </>
+    
   );
 }
 {

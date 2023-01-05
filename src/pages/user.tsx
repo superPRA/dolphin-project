@@ -6,6 +6,7 @@ import UserNavBar from "../componenets/user/userNavBar";
 import Footer from "../componenets/ordering/footer";
 import AddAddressMap from "../componenets/glob/addAddressMap";
 import DarkBG from "../componenets/glob/darkBG";
+import { Helmet } from "react-helmet-async";
 
 type Props = {};
 
@@ -17,6 +18,11 @@ export default function User({}: Props) {
   if (typeof user !== "undefined") {
     return (
       <>
+      <Helmet>
+        <title>
+          اطلاعات کاربر
+        </title>
+      </Helmet>
         <Nav />
         <div className="bg-[url('https://static.delino.com/exclusive/img/bg-cover.png')] w-full h-48">
           <div className="bg-neutral-700 py-3 bg-opacity-70 w-full h-full">

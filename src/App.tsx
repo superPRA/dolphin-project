@@ -17,7 +17,6 @@ import UserWallet from "./pages/user/userWallet";
 import UserOrders from "./pages/user/userOrders";
 import UserSetting from "./pages/user/userSetting";
 import Checkout from "./pages/order/checkout";
-import AddAddressMap from "./componenets/glob/addAddressMap";
 
 function App() {
   const location = useLocation() 

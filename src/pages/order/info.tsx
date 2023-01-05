@@ -2,6 +2,7 @@ import TableDataComponenet from "../../componenets/ordering/tableDataComponenet"
 import Navbar from "../../componenets/ordering/navbar";
 import MapInfo from "../../componenets/ordering/mapInfo";
 import uuid from "react-uuid"
+import { Helmet } from "react-helmet-async";
 
 type Props = {};
 
@@ -32,6 +33,10 @@ export default function Info({}: Props) {
     "مرغ سوخاری",
   ];
   return (
+    <>
+    <Helmet>
+      <title>اطلاعات</title>
+    </Helmet>
     <div className="lg:col-span-8 col-span-12 lg:mr-20">
       <Navbar />
       <div className="border-[1px] border-gray-300 bg-white">
@@ -82,5 +87,6 @@ export default function Info({}: Props) {
         <MapInfo />
       </div>
     </div>
+    </>
   );
 }
