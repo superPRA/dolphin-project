@@ -1,9 +1,12 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link } from "react-router-dom";
-import { logOut, setAccountWn } from "../../redux/app/features/inputs/inputSlice";
+import {
+  logOut,
+  setAccountWn,
+} from "../../redux/app/features/inputs/inputSlice";
+import Icons from "./Icons";
+import uuid from "react-uuid";
 
 type Props = {};
 type links = {
@@ -21,27 +24,27 @@ export default function AcountWn({}: Props) {
   const links: links = [
     {
       title: "اطلاعات من",
-      icon: <FontAwesomeIcon icon={solid("exclamation")} />,
+      icon: <Icons name="infoCircle" />,
       link: "/user/info",
     },
     {
       title: "ادرس ها",
-      icon: <FontAwesomeIcon icon={solid("map-location")} />,
+      icon: <Icons name="location" />,
       link: "/user/address",
     },
     {
       title: "کیف پول",
-      icon: <FontAwesomeIcon icon={solid("wallet")} />,
+      icon: <Icons name="wallet" />,
       link: "/user/wallet",
     },
     {
       title: "سفارشات من",
-      icon: <FontAwesomeIcon icon={solid("sheet-plastic")} />,
+      icon: <Icons name="order" />,
       link: "/user/orders",
     },
     {
       title: "تغییر رمز",
-      icon: <FontAwesomeIcon icon={solid("gear")} />,
+      icon: <Icons name="setting" />,
       link: "/user/setting",
     },
   ];
@@ -67,7 +70,7 @@ export default function AcountWn({}: Props) {
           <div className="flex justify-between items-center  ">
             <h2 className="">{user?.name}</h2>
             <button onClick={() => dispatch(setAccountWn(false))}>
-              <FontAwesomeIcon icon={solid("x")} />
+              <Icons name="close" />
             </button>
           </div>
           <h2 className="mt-1"> کیف پول: {0} تومان </h2>
@@ -78,12 +81,12 @@ export default function AcountWn({}: Props) {
           const { title, icon, link } = item;
           return (
             <Link
-            key={link}
+              key={uuid()}
               to={link}
               className="flex justify-between items-center  py-2 hover:text-red-600 transition-colors"
             >
               <h2>{title}</h2>
-              {icon}
+              <i className="text-2xl">{icon}</i>
             </Link>
           );
         })}

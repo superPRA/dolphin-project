@@ -1,6 +1,7 @@
 import list from "../../api/lists";
 import { useAppSelector } from "../../redux/app/hooks";
 import FoodBox from "./foodBox";
+import uuid from "react-uuid"
 
 type Props = {};
 
@@ -13,7 +14,7 @@ export default function Foods({}: Props) {
         const header = item.title;
         const {link} = item
         return (
-          <div key={header}>
+          <div key={uuid()}>
             <h1 id={link} className="text-2xl text-gray-400 my-10 font-semibold col-span-12">
               {header}
             </h1>
@@ -40,7 +41,7 @@ export default function Foods({}: Props) {
                         price={price}
                         type={type}
                         exist={exist}
-                        key={title}
+                        key={uuid()}
                       />
                     );
                     }

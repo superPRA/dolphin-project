@@ -16,6 +16,8 @@ interface CounterState {
   loginWn: boolean;
   accountWn: boolean;
   successMassageStatus: boolean;
+  addAddressMappStatus: boolean;
+  addressMapEdit: boolean 
   users: {
     name: string;
     phone: string;
@@ -28,6 +30,15 @@ interface CounterState {
       mounth: string;
       year: string;
     };
+    address: {
+      lat: number;
+      lng: number;
+      city: string;
+      address: string;
+      addressTitle: string;
+      homeNumber: string;
+      id: number
+    }[];
   }[];
 }
 interface filterInp {
@@ -57,6 +68,8 @@ const initialState: CounterState = {
   loginWn: false,
   accountWn: false,
   successMassageStatus: false,
+  addAddressMappStatus: false,
+  addressMapEdit: false,
   users: [
     {
       isActive: true,
@@ -70,6 +83,7 @@ const initialState: CounterState = {
         year: "",
       },
       gender: "male",
+      address: [],
     },
   ],
 };
@@ -118,6 +132,7 @@ export const counterSlice = createSlice({
           year: "",
         },
         gender: "",
+        address: [],
       });
     },
     activateUser: (
@@ -146,12 +161,12 @@ export const counterSlice = createSlice({
         email: string;
         gender: string;
         name: string;
-        birthday:{
+        birthday: {
           day: string;
-        mounth: string;
-        year: string
-        }
-        pass: string
+          mounth: string;
+          year: string;
+        };
+        pass: string;
       }>
     ) => {
       const i = state.users.findIndex(
@@ -165,11 +180,44 @@ export const counterSlice = createSlice({
       state.users[i].email = action.payload.email;
       state.users[i].gender = action.payload.gender;
       state.users[i].name = action.payload.name;
-      state.users[i].pass = action.payload.pass
+      state.users[i].pass = action.payload.pass;
     },
     setSuccessMassage: (state, action: PayloadAction<boolean>) => {
       state.successMassageStatus = action.payload;
     },
+    setAddressMapStatus: (state, action: PayloadAction<boolean>) => {
+      state.addAddressMappStatus = action.payload;
+    },
+    addLocation: (
+      state,
+      action: PayloadAction<{
+        lat: number;
+        lng: number;
+        city: string;
+        address: string;
+        addressTitle: string;
+        homeNumber: string;
+      }>
+    ) => {
+      const i = state.users.findIndex((item) => item.isActive === true);
+      state.users[i].address.push({
+        address: action.payload.address,
+        addressTitle: action.payload.addressTitle,
+        city: action.payload.city,
+        homeNumber: action.payload.homeNumber,
+        lat: action.payload.lat,
+        lng: action.payload.lng,
+        id: Math.random(),
+      });
+    },
+    deleteAddress: (state, action: PayloadAction<number>)=>{
+      const i = state.users.findIndex(item=>item.isActive === true)
+      const j = state.users[i].address.findIndex(item=>item.id === action.payload)
+      state.users[i].address.splice(j, 1) 
+    },
+    setEditMode: (state, action: PayloadAction<boolean>)=>{
+      state.addressMapEdit = action.payload
+    }
   },
 });
 
@@ -184,6 +232,10 @@ export const {
   logOut,
   updateUser,
   setSuccessMassage,
+  setAddressMapStatus,
+  addLocation,
+  setEditMode,
+  deleteAddress,
 } = counterSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

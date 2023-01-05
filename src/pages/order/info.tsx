@@ -1,6 +1,7 @@
 import TableDataComponenet from "../../componenets/ordering/tableDataComponenet";
 import Navbar from "../../componenets/ordering/navbar";
 import MapInfo from "../../componenets/ordering/mapInfo";
+import uuid from "react-uuid"
 
 type Props = {};
 
@@ -57,7 +58,7 @@ export default function Info({}: Props) {
                       launchTime={launchTime}
                       time={time}
                       weekDay={weekDay}
-                      key={item}
+                      key={uuid()}
                       dayOfWeek={daysOfWeeks[item]}
                     />
                   );
@@ -70,7 +71,7 @@ export default function Info({}: Props) {
             <ul className="mt-8 text-center">
               {foodName.map((item) => {
                 return (
-                  <li className="border border-gray-300 rounded-full w-fit py-2 px-4 m-1 text-sm inline-block mx-auto">
+                  <li className="border border-gray-300 rounded-full w-fit py-2 px-4 m-1 text-sm inline-block mx-auto" key={uuid()}>
                     {item}
                   </li>
                 );

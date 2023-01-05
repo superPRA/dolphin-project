@@ -1,9 +1,8 @@
 import React from "react";
 import { useAppSelector } from "../../redux/app/hooks";
 import { Link, Navigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useFormik } from "formik";
+import Icons from "../../componenets/glob/Icons";
 
 type Props = {};
 interface initVal {
@@ -37,10 +36,9 @@ export default function Checkout({}: Props) {
           <h1 className="font-bold text-xl">فستفود دلفین</h1>
           <Link to="/order" className="flex items-center">
             بازگشت به منو
-            <FontAwesomeIcon
-              icon={solid("angle-left")}
-              className="px-2 text-xl"
-            />
+            <i className="px-2 text-xl">
+              <Icons name="leftAngle" />
+            </i>
           </Link>
         </div>
 
@@ -79,10 +77,9 @@ export default function Checkout({}: Props) {
                   htmlFor="reseive-motor"
                   className=" h-5 w-5 border-2 border-gray-400 rounded-full peer-checked:bg-red-600 transition-all duration-300 flex justify-center items-center hover:border-red-600 peer-hover:border-red-600 peer-checked:border-red-600 mt-1"
                 >
-                  <FontAwesomeIcon
-                    icon={solid("check")}
-                    className="text-sm text-white"
-                  />
+                  <i className="text-sm text-white">
+                    <Icons name="check" />
+                  </i>
                 </label>
                 <div>
                   <label
@@ -97,7 +94,7 @@ export default function Checkout({}: Props) {
                 </div>
               </div>
               <label htmlFor="reseive-motor" className="text-3xl ">
-                <FontAwesomeIcon icon={solid("motorcycle")} />
+                <Icons name="motor" />
               </label>
             </div>
 
@@ -117,10 +114,9 @@ export default function Checkout({}: Props) {
                     htmlFor="reseive-person"
                     className=" h-5 w-5 border-2 border-gray-400 rounded-full peer-checked:bg-red-600 transition-all duration-300 flex justify-center items-center hover:border-red-600 peer-hover:border-red-600 peer-checked:border-red-600 mt-1"
                   >
-                    <FontAwesomeIcon
-                      icon={solid("check")}
-                      className="text-sm text-white"
-                    />
+                    <i className="text-sm text-white">
+                      <Icons name="check" />
+                    </i>
                   </label>
                   <div>
                     <label
@@ -135,7 +131,7 @@ export default function Checkout({}: Props) {
                   </div>
                 </div>
                 <label htmlFor="reseive-person" className="text-3xl">
-                  <FontAwesomeIcon icon={solid("box")} />
+                  <Icons name="box" />
                 </label>
               </div>
             </div>
@@ -191,7 +187,10 @@ export default function Checkout({}: Props) {
               className="w-24 h-20 text-center border peer-checked/online:bg-red-600 peer-checked/online:text-white transition rounded-r items-center flex justify-center"
             >
               <div>
-                <FontAwesomeIcon icon={solid("computer")} />
+                <div className="mx-auto w-fit">
+                  <Icons name="computer" />
+                </div>
+
                 <h2>انلاین</h2>
               </div>
             </label>
@@ -200,7 +199,10 @@ export default function Checkout({}: Props) {
               className="w-24 h-20 text-center border peer-checked/cash:bg-red-600 peer-checked/cash:text-white transition items-center flex justify-center"
             >
               <div>
-                <FontAwesomeIcon icon={solid("wallet")} />
+                <div className="mx-auto w-fit">
+                  <Icons name="wallet" />
+                </div>
+                
                 <h2>نقدی</h2>
               </div>
             </label>
@@ -209,7 +211,7 @@ export default function Checkout({}: Props) {
               className="w-24 h-20 text-center border peer-checked/card:bg-red-600 peer-checked/card:text-white transition rounded-l items-center flex justify-center"
             >
               <div>
-                <FontAwesomeIcon icon={solid("bank")} />
+                <Icons name="bank" />
                 <h1>کارتخان</h1>
               </div>
             </label>

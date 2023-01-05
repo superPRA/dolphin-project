@@ -1,7 +1,6 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/app/hooks";
+import Icons from "./Icons";
 
 type Props = {};
 
@@ -25,8 +24,11 @@ export default function SuccessMassage({}: Props) {
     <div
       className={`bg-white ${css} transition-all duration-300 h-32 w-[22rem] fixed left-[calc(50%-11rem)] top-[calc(50%-4rem)] text-center z-50 pt-3`}
     >
-      <FontAwesomeIcon icon={solid("user")} className="text-5xl text-red-600" />
-      <h1 className="mt-4 text-xl">پروفایل شما با موفقیت به روز شد</h1>
+      <div className="text-7xl text-red-600 flex justify-center items-center">
+        <Icons name="user" />
+      </div>
+
+      <h1 className=" text-xl">پروفایل شما با موفقیت به روز شد</h1>
     </div>
   );
 }

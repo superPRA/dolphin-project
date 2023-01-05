@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import list from "../../api/lists";
 import FoodNavBox from "./foodNavBox";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import Icons from "../glob/Icons";
+import uuid from "react-uuid" 
 
 type Props = {};
 
@@ -10,7 +10,7 @@ export default function FoodNav({}: Props) {
   const scrollElement: any = useRef();
   const foodNavElement = list.foodNav.map((item) => {
     const { img, title, link } = item;
-    return <FoodNavBox img={img} title={title} link={link} key={title} />;
+    return <FoodNavBox img={img} title={title} link={link} key={uuid()} />;
   });
   return (
     <div className="w-full flex sticky top-0 bg-white z-10 border-b border-b-gray-300">
@@ -20,10 +20,7 @@ export default function FoodNav({}: Props) {
           scrollElement.current.scrollLeft += 150;
         }}
       >
-        <FontAwesomeIcon
-          className="text-gray-400"
-          icon={solid("caret-right")}
-        />
+        <i className="text-gray-400"><Icons name="right" /></i>
       </button>
       <div
         className="w-full flex justify-start gap-x-8 px-8 items-start md:overflow-hidden overflow-x-scroll  scroll-smooth"
@@ -37,7 +34,9 @@ export default function FoodNav({}: Props) {
           scrollElement.current.scrollLeft -= 150;
         }}
       >
-        <FontAwesomeIcon className="text-gray-400" icon={solid("caret-left")} />
+        <i className="text-gray-400">
+          <Icons name="left" />
+        </i>
       </button>
     </div>
   );

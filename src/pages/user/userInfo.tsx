@@ -1,15 +1,11 @@
 import { useFormik } from "formik";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { setSuccessMassage, updateUser } from "../../redux/app/features/inputs/inputSlice";
+import {
+  setSuccessMassage,
+  updateUser,
+} from "../../redux/app/features/inputs/inputSlice";
+import Icons from "../../componenets/glob/Icons";
+import uuid from "react-uuid"
 
 type Props = {};
 interface initVal {
@@ -39,26 +35,26 @@ export default function UserInfo({}: Props) {
   const formik = useFormik({
     initialValues,
     validate(values) {
-      const error = {}
+      const error = {};
       return error;
     },
     onSubmit: (values) => {
-      dispatch(setSuccessMassage(true))
-      setTimeout(()=>{
-        dispatch(setSuccessMassage(false))
-      },2000)
+      dispatch(setSuccessMassage(true));
+      setTimeout(() => {
+        dispatch(setSuccessMassage(false));
+      }, 2000);
       dispatch(
         updateUser({
           phone: values.phoneNumber,
           email: values.email,
           gender: values.gender,
           name: values.name,
-          birthday : {
+          birthday: {
             day: values.day,
             mounth: values.mounth,
-            year: values.year
+            year: values.year,
           },
-          pass: user?.pass as string
+          pass: user?.pass as string,
         })
       );
     },
@@ -86,7 +82,10 @@ export default function UserInfo({}: Props) {
   const days: number[] = Array.from(new Array(31), (val, index) => index + 1);
   return (
     <div>
-      <form className="md:w-[32rem] mx-auto md:px-0 px-12" onSubmit={formik.handleSubmit}>
+      <form
+        className="md:w-[32rem] mx-auto md:px-0 px-12"
+        onSubmit={formik.handleSubmit}
+      >
         <div className="md:flex md:justify-center gap-x-10 md:items-center pt-20">
           <div className="w-full relative">
             <input
@@ -170,17 +169,14 @@ export default function UserInfo({}: Props) {
                   <option value="روز">روز</option>
                   {days.map((item) => {
                     return (
-                      <option value={item.toString()} key={item}>
+                      <option value={item.toString()} key={uuid()}>
                         {item}
                       </option>
                     );
                   })}
                 </select>
                 <label htmlFor="day">
-                  <FontAwesomeIcon
-                    icon={solid("angle-down")}
-                    className="font-thin"
-                  />
+                  <Icons name="down" />
                 </label>
               </div>
               <div className="flex justify-between w-full col-span-4 border-b pb-2 border-b-gray-400">
@@ -192,17 +188,14 @@ export default function UserInfo({}: Props) {
                   <option value="ماه">ماه</option>
                   {mounths.map((item) => {
                     return (
-                      <option value={item} key={item}>
+                      <option value={item} key={uuid()}>
                         {item}
                       </option>
                     );
                   })}
                 </select>
                 <label htmlFor="mounth">
-                  <FontAwesomeIcon
-                    icon={solid("angle-down")}
-                    className="font-thin"
-                  />
+                  <Icons name="down" />
                 </label>
               </div>
               <div className="flex justify-between w-full col-span-4 border-b pb-2 border-b-gray-400">
@@ -214,17 +207,14 @@ export default function UserInfo({}: Props) {
                   <option value="سال">سال</option>
                   {years.reverse().map((item) => {
                     return (
-                      <option value={item.toString()} key={item}>
+                      <option value={item.toString()} key={uuid()}>
                         {item}
                       </option>
                     );
                   })}
                 </select>
                 <label htmlFor="year">
-                  <FontAwesomeIcon
-                    icon={solid("angle-down")}
-                    className="font-thin"
-                  />
+                  <Icons name="down" />
                 </label>
               </div>
             </div>
@@ -248,10 +238,9 @@ export default function UserInfo({}: Props) {
                 htmlFor="male"
                 className=" h-5 w-5 border-2 border-gray-400 rounded-full peer-checked/male:bg-red-600 transition-all duration-300 flex justify-center items-center hover:border-red-600 peer-hover/male:border-red-600 peer-checked/male:border-red-600"
               >
-                <FontAwesomeIcon
-                  icon={solid("check")}
-                  className="text-sm text-white"
-                />
+                <i className="text-sm text-white">
+                  <Icons name="check" />
+                </i>
               </label>
             </div>
             <div className="flex">
@@ -269,17 +258,14 @@ export default function UserInfo({}: Props) {
                 htmlFor="female"
                 className=" h-5 w-5 border-2 border-gray-400 rounded-full peer-checked/female:bg-red-600 transition-all duration-300 flex justify-center items-center hover:border-red-600 peer-hover/female:border-red-600 peer-checked/female:border-red-600"
               >
-                <FontAwesomeIcon
-                  icon={solid("check")}
-                  className="text-sm text-white"
-                />
+                <i className="text-sm text-white">
+                  <Icons name="check" />
+                </i>
               </label>
             </div>
           </div>
 
-          <button
-            className="bg-red-600 rounded mt-16 mx-auto block text-white px-6 py-3"
-          >
+          <button className="bg-red-600 rounded mt-16 mx-auto block text-white px-6 py-3">
             ذخیره
           </button>
         </div>

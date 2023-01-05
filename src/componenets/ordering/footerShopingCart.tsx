@@ -1,8 +1,7 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { setCartStatus } from "../../redux/app/features/shopingCart/cartSlice";
+import Icons from "../glob/Icons";
 
 type Props = {};
 
@@ -25,7 +24,9 @@ export default function FooterShopingCart({}: Props) {
         onClick={() => dispatch(setCartStatus(true))}
       >
         <div className="flex items-center gap-x-2">
-          <FontAwesomeIcon className="text-2xl" icon={solid("cart-plus")} />
+          <i className="text-2xl">
+            <Icons name="cart" />
+          </i>
           <h2 className="text-2xl pb-2">سبد خرید({numberOfOrders})</h2>
         </div>
         <h3 className="bg-black bg-opacity-40 px-4 py-2 rounded-full">

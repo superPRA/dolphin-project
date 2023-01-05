@@ -1,8 +1,7 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { setAccountWn, setLoginWn } from "../../redux/app/features/inputs/inputSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import Icons from "../glob/Icons";
 
 type Props = {};
 
@@ -23,7 +22,7 @@ export default function NavBTN({}: Props) {
       }}
     >
      {!!user?.name || "عضویت / ورود"}
-     {!!user?.name && <span>{user.name}  <FontAwesomeIcon icon={solid("angle-down")} /> </span>}
+     {!!user?.name && <div className="flex items-end gap-x-1">{user.name}  <Icons name="down"/> </div>}
     </button>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import uuid from "react-uuid"
 
 type Props = {};
 
@@ -32,7 +33,7 @@ export default function UserNavBar({}: Props) {
         const { link, title } = item;
         return (
           <NavLink
-          key={link}
+          key={uuid()}
             to={link}
             className={({ isActive }) => {
               return isActive

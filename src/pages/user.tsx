@@ -4,6 +4,8 @@ import { useAppSelector } from "../redux/app/hooks";
 import { NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
 import UserNavBar from "../componenets/user/userNavBar";
 import Footer from "../componenets/ordering/footer";
+import AddAddressMap from "../componenets/glob/addAddressMap";
+import DarkBG from "../componenets/glob/darkBG";
 
 type Props = {};
 
@@ -11,8 +13,8 @@ export default function User({}: Props) {
   const user = useAppSelector((state) => state.inp.users).find(
     (item) => item.isActive === true
   );
-  const navigate = useNavigate()
-  if (typeof user !== "undefined") {  
+  const navigate = useNavigate();
+  if (typeof user !== "undefined") {
     return (
       <>
         <Nav />
@@ -34,7 +36,7 @@ export default function User({}: Props) {
       </>
     );
   } else {
-    navigate("/")
+    navigate("/");
   }
   return <h1 className="text-center mt-40 text-3xl">کاربری یافت نشد</h1>;
 }

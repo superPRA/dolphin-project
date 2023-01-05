@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import ShopingCartBox from "./shopingCartBox";
@@ -12,6 +10,8 @@ import {
 import { setCartStatus } from "../../redux/app/features/shopingCart/cartSlice";
 import { privateDecrypt } from "crypto";
 import { useNavigate } from "react-router-dom";
+import Icons from "../glob/Icons";
+import uuid from "react-uuid"
 
 type Props = {};
 type allOrdersType = {
@@ -62,7 +62,7 @@ export default function ShopingCart({}: Props) {
         count={count}
         title={title}
         price={price}
-        key={title}
+        key={uuid()}
       />
     ) : null;
   });
@@ -110,10 +110,7 @@ export default function ShopingCart({}: Props) {
           {numberOfOrders > 0 && (
             <div className="flex gap-x-4 lg:block">
               <button onClick={() => dispatch(deleteCart())}>
-                <FontAwesomeIcon
-                  icon={solid("trash-alt")}
-                  className="text-xl hover:text-red-600"
-                />
+                <i className="text-xl hover:text-red-600"><Icons name="trash" /></i>
               </button>
               <button
                 className="lg:hidden"
@@ -122,10 +119,7 @@ export default function ShopingCart({}: Props) {
                   e.stopPropagation();
                 }}
               >
-                <FontAwesomeIcon
-                  icon={solid("x")}
-                  className="text-xl hover:text-red-600"
-                />
+                <i className="text-xl hover:text-red-600"><Icons name="close" /></i>
               </button>
             </div>
           )}
@@ -153,7 +147,7 @@ export default function ShopingCart({}: Props) {
                     dispatch(removePriceReduction());
                   }}
                 >
-                  <FontAwesomeIcon icon={solid("x")} />
+                  <Icons name="close" />
                 </button>
                 <div className="flex justify-between mx-4 mt-4 items-center rtl">
                   <h3>درصد تخفیف فعال</h3>

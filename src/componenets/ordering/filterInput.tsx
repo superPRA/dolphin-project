@@ -1,10 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  solid,
-  regular,
-  brands,
-  icon,
-} from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect } from "react";
@@ -13,6 +6,7 @@ import {
   setFilterInput,
   updateUser,
 } from "../../redux/app/features/inputs/inputSlice";
+import Icons from "../glob/Icons";
 
 type Props = {};
 interface formValues {
@@ -40,8 +34,8 @@ export default function FilterInput({}: Props) {
   return (
     <form className="flex justify-between items-center bk2:px-8 px-2 py-4 ">
       <div className="flex items-center">
-        <button className="border border-l-0 border-gray-500 rounded-r-sm h-9 w-9">
-          <FontAwesomeIcon flip="horizontal" icon={solid("search")} />
+        <button className="border border-l-0 border-gray-500 rounded-r-sm h-9 w-9 flex justify-center items-center text-xl" type="button">
+          <Icons name="search"  />
         </button>
         <input
           id="search"
@@ -67,12 +61,9 @@ export default function FilterInput({}: Props) {
         />
         <label
           htmlFor="exist"
-          className=" h-5 w-5 border-2 border-gray-400 rounded-full peer-checked:bg-red-600 transition-all duration-300 flex justify-center items-center hover:border-red-600 peer-hover:border-red-600 peer-checked:border-red-600"
+          className=" h-5 w-5 border-2 text-sm text-white border-gray-400 rounded-full peer-checked:bg-red-600 transition-all duration-300 flex justify-center items-end hover:border-red-600 peer-hover:border-red-600 peer-checked:border-red-600"
         >
-          <FontAwesomeIcon
-            icon={solid("check")}
-            className="text-sm text-white"
-          />
+          <Icons name="check" />
         </label>
         <label htmlFor="exist" className="select-none">
           فقط موجود ها

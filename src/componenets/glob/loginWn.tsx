@@ -6,10 +6,8 @@ import {
   setAccountWn,
   setLoginWn,
 } from "../../redux/app/features/inputs/inputSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import Icons from "./Icons";
 
 interface initVal {
   phoneNumber: string;
@@ -190,7 +188,7 @@ export default function LoginWn() {
     >
       <header className="flex justify-end border-b p-3 text-xl">
         <button onClick={() => dispatch(setLoginWn(false))}>
-          <FontAwesomeIcon icon={solid("x")} />
+          <Icons name="close" />
         </button>
       </header>
       <main className="px-12">
